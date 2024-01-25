@@ -1,18 +1,32 @@
-import express,{ Express,Request,Response } from "express";
+import express, { Express, Request, Response } from "express";
+import cors from "cors"
 import dotenv from "dotenv";
+import { connection } from "./connections/database";
+import UserRoute from "./router/userRoutes";
 
+//Fastify Instance
+const app: Express = express();
 
+//Database Connection
+connection;
+
+//Basic Initializations (env and port)
 dotenv.config();
+const port = process.env.PORT || 3000;
 
+//Middlewares
+app.use(cors())
+app.use(express.json())
 
-const port=process.env.PORT || 3000;
-const app:Express=express();
+//Routes
+app.use("/", UserRoute);
 
-app.get("/healthcheck",(req:Request,res:Response)=>{
-res.send("Server of Pocket PG is in Healthy condition")
-})   
+//Health checking route
+app.get("/healthcheck", (req: Request, res: Response) => {
+  res.send("Server of Pocket PG is in Healthy condition");
+});
 
-
-app.listen(port,()=>{
-    console.log(`Server is Running in Port ${port}`)  
-}) 
+//Server listening
+app.listen(port, () => {
+  console.log(`Server is Running in Port ${port}`);
+});

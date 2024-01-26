@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.post("/signup", signUp);
 router.post("/login",login)
-router.get("/verify",verifyjwt,verify)
+router.get("/verifyjwt",verifyjwt,verify)
 
 export default router; 

@@ -53,7 +53,7 @@ const login = async (req: Request, res: Response) => {
 };
 
 const verify = (req: DecorateRequest, res: Response) => {
-  res.status(201).json({ userid: req.userid });
+  res.status(201).json({success:true, data:req.userid });
 };
 
 export { signUp, login, verify };

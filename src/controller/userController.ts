@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
+import jwt from "jsonwebtoken"
 import { UserSchema } from "../models/usermodel";
 import { createJsonwebtoken, createrefreshtoken } from "../components/jwttoken";
+
 
 //User register controller
 const signUp = async (req: Request, res: Response) => {
@@ -57,4 +59,10 @@ const login=async(req:Request,res:Response)=>{
 
 }
 
-export { signUp,login };
+
+const verify=(req:Request,res:Response)=>{
+  //@ts-ignore
+res.status(201).json({userid:req.userid})
+}
+
+export { signUp,login,verify};

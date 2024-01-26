@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import {DecorateRequest} from "../middleware/verifyjwt"
 import { UserSchema } from "../models/usermodel";
 import { createJsonwebtoken, createrefreshtoken } from "../components/jwttoken";
 
@@ -52,8 +52,7 @@ const login = async (req: Request, res: Response) => {
   }
 };
 
-const verify = (req: Request, res: Response) => {
-  //@ts-ignore
+const verify = (req: DecorateRequest, res: Response) => {
   res.status(201).json({ userid: req.userid });
 };
 

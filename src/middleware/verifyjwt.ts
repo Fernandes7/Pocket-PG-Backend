@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 
 export interface DecorateRequest extends Request {
   userid?: string;
-  username?: string;
 }
 const verifyjwt = (req: DecorateRequest, res: Response, next: NextFunction) => {
   try {

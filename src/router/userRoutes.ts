@@ -1,9 +1,13 @@
 import express from "express";
-import { login, signUp } from "../controller/userController";
+import { NextFunction } from "express";
+import { login, signUp, verify } from "../controller/userController";
+import { verifyjwt } from "../middleware/verifyjwt";
 
 const router = express.Router();
 
+
 router.post("/signup", signUp);
 router.post("/login",login)
+router.get("/verify",verifyjwt,verify)
 
-export default router;
+export default router; 

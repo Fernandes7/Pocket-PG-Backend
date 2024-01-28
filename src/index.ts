@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors"
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser"
 import { connection } from "./connections/database";
 import UserRoute from "./router/userRoutes";
 
@@ -15,8 +16,9 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 //Middlewares
-app.use(cors())
+app.use(cors({origin:process.env.FRONTENDURL,credentials:true}))
 app.use(express.json())
+app.use(cookieParser())
 
 //Routes
 app.use("/", UserRoute);

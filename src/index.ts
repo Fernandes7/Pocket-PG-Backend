@@ -16,9 +16,10 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 //Middlewares
-app.use(cors({origin:process.env.FRONTENDURL,credentials:true}))
-app.use(express.json())
+app.use(cors({origin:'http://localhost:3000',credentials:true}))
 app.use(cookieParser())
+app.use(express.json())
+
 
 //Routes
 app.use("/", UserRoute);

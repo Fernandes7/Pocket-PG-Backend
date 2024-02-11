@@ -25,7 +25,7 @@ const signUp = async (req: Request, res: Response) => {
   }
 };
 
-const login = async (req: Request, res: Response) => {
+const login = async (req:Request, res: Response) => {
   try {
     const isUserExist = await UserSchema.findOne({
       useremail: req.body.data.useremail,
@@ -34,9 +34,9 @@ const login = async (req: Request, res: Response) => {
       if (isUserExist.userpassword === req.body.data.userpassword) {
         const accesstoken = createJsonwebtoken(isUserExist._id);
         const refreshtoken = createrefreshtoken(isUserExist._id);
-        if (accesstoken && refreshtoken) {
-          res.cookie("accesstoken", accesstoken,{httpOnly:true});
-          res.cookie("refreshtoken", refreshtoken, { httpOnly: true });
+        if (accesstoken && refreshtoken) {  
+          res.cookie("accesstoken", accesstoken);
+          res.cookie("refreshtoken",refreshtoken)
           res
             .status(201)
             .json({ success: true, data: isUserExist._id });

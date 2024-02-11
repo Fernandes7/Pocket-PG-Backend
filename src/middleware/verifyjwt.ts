@@ -6,8 +6,7 @@ export interface DecorateRequest extends Request {
 }
 const verifyjwt = (req: DecorateRequest, res: Response, next: NextFunction) => {
   try {
-    const jwtwithBearer = req.headers.authorization;
-    const jwttoken = jwtwithBearer && jwtwithBearer.split(" ")[1];
+    const jwttoken = req.cookies.accesstoken
     const decodedjwt = jwt.verify(jwttoken!, process.env.JSONSECRETKEY!);
     req.userid=decodedjwt as string
     next();

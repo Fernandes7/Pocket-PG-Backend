@@ -6,13 +6,13 @@ import { Types } from "mongoose"
 dotenv.config()
 
 const createJsonwebtoken=(id:Types.ObjectId)=>{
-const token=jwt.sign({"userid":id},process.env.JSONSECRETKEY!,{expiresIn:"30s"})
+const token=jwt.sign({"userid":id},process.env.JSONSECRETKEY!,{expiresIn:"15m"})
 if(token)
 return token
 }
 
 const createrefreshtoken=(id:Types.ObjectId)=>{
-    const refreshtoken=jwt.sign({"userid":id},process.env.JSONSECRETKEY!);
+    const refreshtoken=jwt.sign({"userid":id},process.env.JSONSECRETKEY!,{expiresIn:"5d"});
     if (refreshtoken)
     return refreshtoken
 }

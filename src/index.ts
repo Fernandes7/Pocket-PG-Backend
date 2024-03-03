@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import { connection } from "./connections/database";
 import UserRoute from "./router/userRoutes";
 
-//Fastify Instance
+//Express Instance
 const app: Express = express();
 
 //Database Connection

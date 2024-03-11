@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser"
 import { connection } from "./connections/database";
 import UserRoute from "./router/userRoutes";
+import LocationRoute from "./router/locationRoutes"
 
 //Fastify Instance
 const app: Express = express();
@@ -22,6 +23,7 @@ app.use(cookieParser())
 
 //Routes
 app.use("/", UserRoute);
+app.use("/",LocationRoute)
 
 //Health checking route
 app.get("/healthcheck", (req: Request, res: Response) => {

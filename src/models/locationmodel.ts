@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 //Schema Design
 const locationSchema=new mongoose.Schema({
-    location:String,
-    image:String,
+    locationname:String,
+    imageurl:String,
     hostelcount:{type:Number,default:0}
 })
 

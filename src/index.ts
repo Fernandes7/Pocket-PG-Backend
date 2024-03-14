@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"
 import { connection } from "./connections/database";
 import UserRoute from "./router/userRoutes";
 import LocationRoute from "./router/locationRoutes"
+import HostelRoute from "./router/hostelRoutes"
 
 //Fastify Instance
 const app: Express = express();
@@ -25,6 +26,7 @@ app.use(express.json())
 //Routes
 app.use("/", UserRoute);
 app.use("/",LocationRoute)
+app.use("/",HostelRoute)
 
 //Health checking route
 app.get("/healthcheck", (req: Request, res: Response) => {

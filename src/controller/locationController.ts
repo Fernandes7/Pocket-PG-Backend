@@ -1,7 +1,4 @@
-import { v2 as cloudinary } from "cloudinary";
-import dotenv from "dotenv";
 import { Request, Response } from "express";
-import fs from "fs";
 import { uploadimagetocloudinary } from "../components/cloudinaryimageupload";
 import { LocationSchema } from "../models/locationmodel";
 
@@ -26,4 +23,16 @@ const addlocation = async (req:any, res: Response) => {
   }
 };
 
-export { addlocation };
+const viewlocation=async(req:Request,res:Response)=>{
+  try{
+  const loactiondata=await LocationSchema.find()
+  if(loactiondata)
+  res.status(201).json({success:true,data:loactiondata})
+  }
+  catch(e:any)
+  {
+    res.send({success:false,data:e.message}).status(500)
+  }
+}
+
+export { addlocation,viewlocation };

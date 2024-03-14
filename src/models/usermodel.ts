@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-//Schema Design
 const userSchema = new mongoose.Schema(
   {
     username: String,
@@ -11,7 +10,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-//Model(Table) creation
 const UserSchema = mongoose.model("UsersData", userSchema);
 
 export { UserSchema };

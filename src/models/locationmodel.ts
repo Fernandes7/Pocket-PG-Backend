@@ -8,4 +8,4 @@ const locationSchema=new mongoose.Schema({
 
 const LocationSchema=mongoose.model("LocationsData",locationSchema)
 
-export {LocationSchema}
+export {LocationSchema}  

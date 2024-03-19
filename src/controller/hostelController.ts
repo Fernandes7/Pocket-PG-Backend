@@ -44,7 +44,7 @@ const viewhostelsbasedonlocation=async(req:Request,res:Response)=>{
 }
 catch(e:any)
 {
-    res.status(500).json({success:false,data:e.message})
+    res.status(500).json({success:false,data:e.message})  
 }
 }
 

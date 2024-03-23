@@ -52,8 +52,21 @@ const login = async (req:Request, res: Response) => {
   }
 };
 
-const verify = (req: DecorateRequest, res: Response) => {
-  res.status(201).json({success:true, data:req.userid });
+const verify = async(req: DecorateRequest, res: Response) => {
+  try
+  {
+  if(req.userid)
+  {
+  const username=await UserSchema.findById(req.userid)
+  res.status(201).json({success:true, data:username});
+  }
+  else
+  res.status(201).json({success:false,data:"No user Find in this Token"})
+}
+catch(e:any)
+{
+  res.status(500).json({success:false,data:e.message})
+}
 };
 
 const finduserbyid=async(req:Request,res:Response)=>{

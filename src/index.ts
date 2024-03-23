@@ -6,6 +6,7 @@ import { connection } from "./connections/database";
 import UserRoute from "./router/userRoutes";
 import LocationRoute from "./router/locationRoutes"
 import HostelRoute from "./router/hostelRoutes"
+import SentimentalAnlyzerRoute from "./router/sentimentalAnalyserRoutes"
 
 //Fastify Instance
 const app: Express = express();
@@ -27,6 +28,7 @@ app.use(express.json())
 app.use("/", UserRoute);
 app.use("/",LocationRoute)
 app.use("/",HostelRoute)
+app.use("/",SentimentalAnlyzerRoute)
 
 //Health checking route
 app.get("/healthcheck", (req: Request, res: Response) => {

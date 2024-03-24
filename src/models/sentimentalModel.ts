@@ -8,6 +8,7 @@ const sentimentalSchema=new mongoose.Schema({
     predictedrating:{type:Number},
     previouspredictedrating:{type:Number},
     fakereview:[],
+    checkpoint:[],
     actualreview:{type:Number}
 },{timestamps:true})
 

@@ -118,4 +118,13 @@ const sentimentalanalyzer=async(req:Request,res:Response)=>{
     }
 }
 
-export {findsentimentalscore,sentimentalanalyzer}   
+
+const viewsentimentaldata=async(req:Request,res:Response)=>{
+    const data=await SentimentalSchema.findById("660077ea2a92c148bad369dc")
+    if(data)
+    {
+        res.status(201).json({success:true,data:data})
+    }
+}
+
+export {findsentimentalscore,sentimentalanalyzer,viewsentimentaldata}   

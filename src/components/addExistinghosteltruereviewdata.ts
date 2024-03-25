@@ -9,7 +9,7 @@ const addExistingHostelTrueReview=async(sentiemntalreviewdata:any,review:string,
     const data={review:review,score:score}
     sentiemntalreviewdata.truereview.push(data)
     const previouspredictedrating=sentiemntalreviewdata.predictedrating
-    sentiemntalreviewdata.previouspredictedrating=previouspredictedrating
+    sentiemntalreviewdata.previouspredictedrating.push(previouspredictedrating)
     const average=averagefinder(sentiemntalreviewdata.truereview)
     sentiemntalreviewdata.predictedrating=average
     if(average>=4.5)

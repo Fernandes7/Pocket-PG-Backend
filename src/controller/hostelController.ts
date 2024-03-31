@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { uploadimagetocloudinary } from "../components/cloudinaryimageupload";
 import { HostelSchema } from "../models/hostelModel";
 import { LocationSchema } from "../models/locationmodel";
+import { ReviewSchema } from "../models/reviewModel";
 
 const addHostel=async(req:any,res:Response)=>{
     try{
@@ -49,4 +50,17 @@ catch(e:any)
 }
 
 
-export {addHostel,viewhostelsbasedonlocation}
+const viewHostelReviewByHostelid=async(req:Request,res:Response)=>{
+    try{
+        const fetchData=await ReviewSchema.find({hostelid:"65f946dc8be480dd84cb2d91"}).populate("userid")
+        if(fetchData)
+        res.status(201).json({success:true,data:fetchData})
+    }
+    catch(e:any)
+    {
+        res.status(500).json({success:false,data:e.message})
+    }
+}
+
+
+export {addHostel,viewhostelsbasedonlocation,viewHostelReviewByHostelid}

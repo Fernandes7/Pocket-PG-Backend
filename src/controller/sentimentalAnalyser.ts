@@ -120,7 +120,7 @@ const sentimentalanalyzer=async(req:Request,res:Response)=>{
 
 
 const viewsentimentaldata=async(req:Request,res:Response)=>{
-    const data=await SentimentalSchema.findById("660077ea2a92c148bad369dc")
+    const data=await SentimentalSchema.findById("66015309c056345df23c2948")
     if(data)
     {
         res.status(201).json({success:true,data:data})

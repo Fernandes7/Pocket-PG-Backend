@@ -10,7 +10,24 @@ const hostelSchema=new mongoose.Schema({
     hostellongitude:{type:Number},
     hosteltype:{type:String},
     hostelservices:{type:[]},
-    hostelinitialrating:{type:Number}
+    hostelinitialrating:{type:Number},
+    hostelimagelinks:{type:String},
+    hosteladdress:{type:String},
+    hostelcontactno:{type:String},
+    hostelemail:{type:String},
+    nearbylocations:{type:String},
+    gateclosetime:{type:String},
+    visitorallowed:{type:String},
+    warden:{type:String},
+    noticeperiod:{type:String},
+    restrictions:{type:String},
+    prohibitions:{type:String},
+    securitydeposite:{type:String},
+    pricecustomization:{type:String},
+    customservices:{type:String},
+    Ironing:{type:String},
+    Food:{type:String},
+    Washing:{type:String}
 })
 
 const HostelSchema=mongoose.model("HostelsData",hostelSchema)

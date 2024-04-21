@@ -17,7 +17,8 @@ const findsentimentalscore=(req:Request,res:Response)=>{
 
 const sentimentalanalyzer=async(req:Request,res:Response)=>{
     try{
-       const {review,hostelid,userid}=req.body.data
+       const {review,hostelid,userid}=req.body.data  
+       console.log(req.body.data)   
        const findsentimentalreviewifexist=await SentimentalSchema.findOne({hostelid:hostelid})
        if(findsentimentalreviewifexist)
        {

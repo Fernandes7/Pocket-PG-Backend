@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
 
-const reviewSchema=new mongoose.Schema({
+const bookingschema=new mongoose.Schema({
     hostelid:{type:mongoose.Schema.Types.ObjectId,ref:"HostelsData",required:true},
     userid:{type:mongoose.Schema.Types.ObjectId,ref:"UsersData",required:true},
-    hostelreview:[]
-},{timestamps:true}) 
+    customize:{type:Boolean},
+    customizeservices:[]
+},{timestamps:true})
 
-const ReviewSchema=mongoose.model("ReviewsData",reviewSchema)
+const BookingSchema=mongoose.model("Booking",bookingschema)
 
-export {ReviewSchema}
-
-
+export {BookingSchema}

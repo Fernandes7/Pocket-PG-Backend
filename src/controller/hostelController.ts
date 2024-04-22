@@ -124,6 +124,20 @@ const addBooking=async(req:Request,res:Response)=>{
     }
 }
 
+const addfavhostel=async(req:Request,res:Response)=>{
+try
+{
+const newfavdata=new FavHostelSchema(req.body.data)
+const saveddata= await newfavdata.save()
+if(saveddata)
+res.status(200).json({success:true,data:"Added Successfully"})
+}
+catch(e:any)
+{
+    res.status(500).json({success:false,data:e.message})
+}
+}
 
 
-export {addHostel,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking}
+
+export {addHostel,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel}

@@ -138,6 +138,21 @@ catch(e:any)
 }
 }
 
+const searchHostelByname=async(req:Request,res:Response)=>{
+    try
+    {
+    const hostels=await HostelSchema.find({hostelname:{$regex:req.body.data.name,$options:"i"}})
+    if(hostels.length>0)
+    res.status(200).json({success:true,data:hostels})
+    else
+    res.status(200).json({success:false,data:"No Hostel Found with tis name"})
+    }
+    catch(e:any)
+    {
+        res.status(500).json({succcess:false,data:e.message})
+    }
+}
 
 
-export {addHostel,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel}
+
+export {addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel}

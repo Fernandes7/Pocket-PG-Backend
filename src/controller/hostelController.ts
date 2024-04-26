@@ -111,6 +111,7 @@ const addBooking=async(req:Request,res:Response)=>{
     {
         const newbooking=new BookingSchema(req.body.data)
         const bookingsaved=await newbooking.save()
+        await HostelSchema.findByIdAndUpdate(hostelid,{$inc:{availablerooms:-1}})
         const hostel=await HostelSchema.findById(hostelid)
         const user=await UserSchema.findById(userid)
         const sendmail=await sendBookingEmail(user?.useremail!,user?.username!,hostel?.hostelname!,hostel?.hostelimage!,bookingsaved._id,bookingsaved.createdAt)

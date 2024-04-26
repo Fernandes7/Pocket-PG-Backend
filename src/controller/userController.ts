@@ -84,4 +84,20 @@ const finduserbyid=async(req:Request,res:Response)=>{
 
 }
 
-export { signUp, login, verify,finduserbyid };
+
+const upDateuser=async(req:Request,res:Response)=>{
+  try{
+   await UserSchema.findByIdAndUpdate(req.body.data.id,req.body.data.data)
+   const update=await UserSchema.findById(req.body.data.id)
+   if(update)
+   res.status(200).json({success:true,data:update})
+   else
+   res.status(200).json({success:false,data:"Failed to update data"})
+  }
+  catch(e:any)
+  {
+    res.status(500).json({success:false,data:e.message})
+  }
+}
+
+export { signUp, login, verify,finduserbyid,upDateuser };   

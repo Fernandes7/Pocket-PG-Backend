@@ -202,4 +202,19 @@ const addRequest=async(req:Request,res:Response)=>{
 }
 
 
-export {addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel,viewFavhostelbyUserid,deleteFavhostel,addRequest}
+const Viewbookigbyuserid=async(req:Request,res:Response)=>{
+    try{
+    const finded=await BookingSchema.find({userid:req.body.data}).populate("hostelid")
+    if(finded.length>0)
+    res.status(200).json({success:true,data:finded})
+    else
+    res.status(200).json({success:false,data:"Error In Retriving Booking"})
+    }
+    catch(e:any)
+    {
+        res.status(500).json({success:false,data:e.message})
+    }
+}
+
+
+export {addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel,viewFavhostelbyUserid,deleteFavhostel,addRequest,Viewbookigbyuserid}

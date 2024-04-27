@@ -7,6 +7,8 @@ import { FavHostelSchema } from "../models/favoritehostelModel";
 import { BookingSchema } from "../models/bookingModel";
 import { sendBookingEmail } from "../components/bookingEmailsender";
 import { UserSchema } from "../models/usermodel";
+import { AddRequestSchema } from "../models/addHostelRequestSchema";
+import { sendRequestEmail } from "../components/requestEmailsender";
 
 const addHostel=async(req:any,res:Response)=>{
     try{
@@ -155,5 +157,49 @@ const searchHostelByname=async(req:Request,res:Response)=>{
 }
 
 
+const viewFavhostelbyUserid=async(req:Request,res:Response)=>{
+    try{
+    const hostels=await FavHostelSchema.find({userid:req.body.data}).populate("hostelid")
+    if(hostels)
+    {
+        res.status(200).json({success:true,data:hostels})
+    }
+    }
+    catch(e:any)
+    {
+        res.status(500).json({success:false,data:e.message})
+    }
+}
 
-export {addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel}
+
+const deleteFavhostel=async(req:Request,res:Response)=>{
+    try{
+        const delhostels=await FavHostelSchema.findByIdAndDelete(req.body.data)
+        if(delhostels)
+        {
+            res.status(200).json({success:true,data:delhostels})
+        }
+        }
+        catch(e:any)
+        {
+            res.status(500).json({success:false,data:e.message})
+        }
+}
+
+
+const addRequest=async(req:Request,res:Response)=>{
+    try{
+    const addedHostel=new AddRequestSchema(req.body.data)
+    const saved=await addedHostel.save()
+    const mailsend=await sendRequestEmail(saved)
+    if(mailsend)
+    res.status(200).json({success:true,data:saved})
+    }
+    catch(e:any)
+    {
+        res.status(500).json({success:false,data:e.message})
+    }
+}
+
+
+export {addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel,viewFavhostelbyUserid,deleteFavhostel,addRequest}

@@ -1,6 +1,6 @@
 import express from "express"
 import { upload } from "../connections/multer"
-import { Viewbookigbyuserid, addBooking, addHostel, addRequest, addfavhostel, deleteFavhostel, searchHostelByname, viewFavhostelbyUserid, viewHostelReviewByHostelid, viewHostelbyid, viewhostelsbasedonlocation } from "../controller/hostelController"
+import { Viewbookigbyuserid, addBooking, addHostel, addRequest, addfavhostel, deleteFavhostel, documentcounts, searchHostelByname, viewFavhostelbyUserid, viewHostelReviewByHostelid, viewHostelbyid, viewhostelsbasedonlocation } from "../controller/hostelController"
 
 const router=express.Router()
 
@@ -15,5 +15,6 @@ router.post("/viewfavbyid",viewFavhostelbyUserid)
 router.post("/deletefav",deleteFavhostel)
 router.post("/addRequest",addRequest)
 router.post("/viewbookingbyid",Viewbookigbyuserid)
+router.post("/length",documentcounts)
 
 export default router

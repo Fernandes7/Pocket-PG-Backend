@@ -216,5 +216,21 @@ const Viewbookigbyuserid=async(req:Request,res:Response)=>{
     }
 }
 
+const documentcounts=async(req:Request,res:Response)=>{
+    try{
+    const hc=await HostelSchema.countDocuments()
+    const rc=await ReviewSchema.countDocuments()
+    const uc=await UserSchema.countDocuments()
+    const bc=await BookingSchema.countDocuments()
+    res.status(200).json({success:true,hc:hc,rc:rc,uc:uc,bc:bc})
+    }
+    catch(e:any)
+    {
+        res.status(500).json({success:false,data:e.message})
+    }
 
-export {addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel,viewFavhostelbyUserid,deleteFavhostel,addRequest,Viewbookigbyuserid}
+
+}
+
+
+export {documentcounts,addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel,viewFavhostelbyUserid,deleteFavhostel,addRequest,Viewbookigbyuserid}

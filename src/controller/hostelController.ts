@@ -232,5 +232,19 @@ const documentcounts=async(req:Request,res:Response)=>{
 
 }
 
+const viewallhostel=async(req:Request,res:Response)=>{
+    try
+    {
+    const hostels=await HostelSchema.find()
+    if(hostels)
+    res.status(200).json({success:true,data:hostels})
+    }
+    catch(e:any)
+    {
+        res.status(500).json({success:false, data:e.message})
+    }
 
-export {documentcounts,addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel,viewFavhostelbyUserid,deleteFavhostel,addRequest,Viewbookigbyuserid}
+}
+
+
+export {viewallhostel,documentcounts,addHostel,searchHostelByname,viewhostelsbasedonlocation,viewHostelReviewByHostelid,viewHostelbyid,addBooking,addfavhostel,viewFavhostelbyUserid,deleteFavhostel,addRequest,Viewbookigbyuserid}

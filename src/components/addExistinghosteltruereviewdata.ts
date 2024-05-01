@@ -3,6 +3,7 @@ import { averagefinder } from "./averagefinder"
 import { findSentimentalAnalysisScore } from "./findSentimentalScore"
 import { HostelSchema } from "../models/hostelModel"
 import { ReviewSchema } from "../models/reviewModel"
+import { sendReviewsEmail } from "./hostelreviewmail"
 
 const addExistingHostelTrueReview=async(sentiemntalreviewdata:any,review:string,hostelid:ObjectId,userid:ObjectId)=>{
     const score=findSentimentalAnalysisScore(review)
@@ -28,6 +29,8 @@ const addExistingHostelTrueReview=async(sentiemntalreviewdata:any,review:string,
     {
         if(findHostel)
         {
+        if(findHostel?.hostelinitialrating!>sentiemntalreviewdata.actualreview)
+        await sendReviewsEmail(findHostel?.hostelemail!,findHostel?.hostelname!,findHostel?.hosteladdress!)
         findHostel.hostelinitialrating=sentiemntalreviewdata.actualreview
         await findHostel.save()
         }
